@@ -20,11 +20,41 @@ namespace ______________ProjetProg______________
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class MainPage : Page
-    {
-        public MainPage()
-        {
+       public MainPage()
+        {         
             this.InitializeComponent();
+         //   AffichageTrajet.ItemsSource = Gestionnaire.getInstance().GetTrajets();
         }
-    }
+
+        private void NavigationView_SelectionChanged(Windows.UI.Xaml.Controls.NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            var item = (NavigationViewItem)args.SelectedItem;
+            header.Text = item.Content.ToString();              // Code pour alle attraper le header indiqué lorsqu'on clique sue un item du Navigattion 
+
+            switch (item.Name)
+            {
+                case "connexion":
+                    mainFrame.Navigate(typeof());
+                    break;
+
+                case "ajouterCompte":
+                    mainFrame.Navigate(typeof());
+                    break;
+
+                case "homeAdministrateur":
+                    mainFrame.Navigate(typeof());
+                    break;
+
+                case "homeClients":
+                    mainFrame.Navigate(typeof());
+                    break;
+                case "homeChauffeur":
+                    mainFrame.Navigate(typeof());
+                    break;
+
+                default:
+                    break;
+
+            }
+        }
 }

@@ -8,7 +8,17 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-     <Grid>
+     
+    <!-- Section avec Fabice               2022-11-22 -->
+    <!-- Verifier pouquoi le template ne marche pas  -->
+    <!-- Comment stocker  les variables de l'utilisateur  -->
+    <!-- Verfier le code du singleton pour affiher les trajets // GetTrajets() -->
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="43*"/>
+        </Grid.RowDefinitions>
         <NavigationView x:Name="nvSample"
     IsSettingsVisible="True"
     IsBackButtonVisible="Auto"
@@ -19,73 +29,98 @@
     PaneDisplayMode="Left"
     ExpandedModeThresholdWidth="500"
     SelectionFollowsFocus="Enabled"
-    IsTabStop="True" Margin="-10,10,10,-10" >
+    IsTabStop="True" Margin="-10,10,10,-10" Grid.RowSpan="2" >
 
+            <!-- Code pour le header -->
             <NavigationView.Header>
-                <TextBlock x:Name="header"></TextBlock>
+                <!-- Voir comment enlever les truncates des espaces -->
+                <TextBlock x:Name="header">Bienvenu chez</TextBlock>
             </NavigationView.Header>
 
+            <!-- Début des Items  -->
             <NavigationView.MenuItems>
-     
-                <NavigationViewItemHeader Content="Administrateur"/>
-                <NavigationViewItem Content="Menu Item2" Tag="SamplePage2" x:Name="SamplePage2Item" SelectsOnInvoked="True">
-                    <NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Save" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem Content="Menu Item3" Tag="SamplePage3" x:Name="SamplePage3Item">
-                    <NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Refresh" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItemSeparator />
 
+                <!-- Structure de l'invité // connecter // créer un compte  -->
+                <NavigationViewItemHeader x:Name="inviteHeader" Content="Invité"/>
+                <NavigationViewItem  Content="Creer un un compte" Name="ajouterCompte" Icon="Add" Background="#FF546F71"  />
+                <NavigationViewItem Content="Connexion" Name="connexion" Icon="Account" Background="#FF745555"/>
+                <NavigationViewItemSeparator x:Name="inviteHr" />
 
+                <!-- Structure de l'administrateur -->
+                <NavigationViewItemHeader x:Name="adminHeader" Content="Administrateur" Visibility="Collapsed"/>
+                <NavigationViewItem Content="Acceuil" Name="homeAdministrateur" Icon="Home" Background="#FF635490" Visibility="Collapsed"/>
+                <NavigationViewItemSeparator x:Name="adminHr" Visibility="Collapsed"/>
 
-                <NavigationViewItemHeader Content="chauffeur "/>
-                <NavigationViewItem Content="Menu Item2" Tag="SamplePage2" x:Name="s" SelectsOnInvoked="True">
-                    <NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Save" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem Content="Menu Item3" Tag="SamplePage3" x:Name="d">
-                    <NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Refresh" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItemSeparator />
+                <!-- Structure du chauffeur  -->
+                <NavigationViewItemHeader x:Name="chauffeurHeader" Content="Chauffeur" Visibility="Collapsed"/>
+                <NavigationViewItem Content="Acceuil" Name="homeChauffeur" Visibility="Collapsed" Icon="Home" Background="#FF8B9054"/>
+                <NavigationViewItemSeparator x:Name="chauffeurHr" Visibility="Collapsed" />
 
+                <!-- Strucuture du clients -->
+                <NavigationViewItemHeader x:Name="clientsHeader" Content="Clients" Visibility="Collapsed"/>
+                <NavigationViewItem Content="Acceuil" Visibility="Collapsed"  Name="homeClient" Icon="Home" Background="#FFB37893"/>
 
-                <NavigationViewItemHeader Content="Clients"/>
-                <NavigationViewItem Content="Menu Item2" Tag="SamplePage2" x:Name="e" SelectsOnInvoked="True">
-                    <NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Save" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem Content="Menu Item3" Tag="SamplePage3" x:Name="r">
-                    <NavigationViewItem.Icon>
-                        <SymbolIcon Symbol="Refresh" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
 
             </NavigationView.MenuItems>
+            <!-- Fin des items -->
 
+            <!-- Options non utilisées pour section more info -->
             <NavigationView.PaneCustomContent>
                 <HyperlinkButton x:Name="PaneHyperlink" Content="More info" Margin="12,0" Visibility="Collapsed" />
             </NavigationView.PaneCustomContent>
 
+            <!-- Code pour la barre de recherhe  -->
             <NavigationView.AutoSuggestBox>
                 <AutoSuggestBox QueryIcon="Find" AutomationProperties.Name="Search" />
             </NavigationView.AutoSuggestBox>
 
+            <!-- Début du footer  -->
             <NavigationView.PaneFooter>
-                <StackPanel x:Name="FooterStackPanel" Orientation="Vertical" Visibility="Visible">
-                    <NavigationViewItem Icon="Account" AutomationProperties.Name="download" />
+                <StackPanel x:Name="compte" Orientation="Vertical" Visibility="Collapsed">
+                    <NavigationViewItem Icon="Account" AutomationProperties.Name="download" Content="Compte" />
 
                 </StackPanel>
             </NavigationView.PaneFooter>
 
-            <Frame x:Name="contentFrame" />
+            <!-- Début du Frame    // outcoder la page de base pour l'invité lorsque l'application est ouverte pour la première fois -->
+            <Frame x:Name="mainFrame" Background="#FFA8A0A0" >
+                <!--
+                <Grid>
+                    <GridView x:Name="AffichageTrajets">
+                        <GridView.ItemTemplate>
+
+                            <DataTemplate x:DataType="local:Trajets">
+
+                                <StackPanel Orientation="Vertical"
+                                Margin="5" HorizontalAlignment="Stretch">
+                                    <StackPanel.Background>
+                                        <ImageBrush/>
+                                    </StackPanel.Background>
+
+                                    <Image Height="500" Width="400" Source="https://static.wikia.nocookie.net/ssb/images/2/2a/Shinku_Hadoken.gif/revision/latest?cb=20150718004206"/>
+                                    <TextBlock Text="{x:Bind Date}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" />
+                                    <TextBlock Text="{x:Bind HeuresDepart}" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="20"/>
+                                    <TextBlock Text="{x:Bind HeuresArrivee}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" />
+                                    <TextBlock Text="{x:Bind VilleDepart}" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="20"/>
+                                    <TextBlock Text="{x:Bind VilleArrive}" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="20"/>
+                                    <TextBlock Text="{x:Bind NomChauffeur}" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="20"/>
+                                    <TextBlock Text="{x:Bind Montant}" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="20"/>
+
+                      
+
+
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+
+
+                    </GridView>
+
+                </Grid>
+
+-->
+            </Frame>
         </NavigationView>
 
     </Grid>
