@@ -1,0 +1,148 @@
+﻿<Page
+    x:Class="Essai2Projet.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Essai2Projet"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="maingrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="43*"/>
+        </Grid.RowDefinitions>
+        <NavigationView x:Name="nvSample"
+    IsSettingsVisible="false"
+    IsBackButtonVisible="Auto"
+    IsBackEnabled="True"
+    SelectionChanged="NavigationView_SelectionChanged"
+    AlwaysShowHeader="True"
+    PaneTitle="Daouda Inc"
+    PaneDisplayMode="Left"
+    ExpandedModeThresholdWidth="500"
+    SelectionFollowsFocus="Enabled"
+    IsTabStop="True" Margin="-10,10,10,-10" Grid.RowSpan="2" >
+
+            <!-- Code pour le header -->
+            <NavigationView.Header>
+                <!-- Voir comment enlever les truncates des espaces -->
+                <TextBlock x:Name="header" HorizontalAlignment="Center" FontSize="48" FontFamily="Monotype Corsiva">Bienvenu  </TextBlock>
+            </NavigationView.Header>
+
+            <!-- Début des Items  -->
+            <NavigationView.MenuItems>
+
+                <!-- Structure de l'invité // connecter // créer un compte  -->
+                <NavigationViewItemHeader Visibility="Visible" x:Name="inviteHeader" Content="Invité"/>
+                <NavigationViewItem  Visibility="Visible" Content="Creer un un compte" Tag="Création d'un compte" Name="ajouterCompte" Icon="Add" Background="#FF546F71"  />
+                <NavigationViewItem  Visibility="Visible" Content="Connexion" Name="connexion"  Tag="Connexion  d'un compte" Icon="Account" Background="#FF745555"/>
+                <NavigationViewItemSeparator  Visibility="Visible" x:Name="inviteHr" />
+
+                <!-- Structure de l'administrateur -->
+                <NavigationViewItemHeader x:Name="adminHeader" Content="Administrateur" Visibility="Collapsed"/>
+                <NavigationViewItem  Content="Acceuil"  Tag="Gestion des trajets" Name="homeAdministrateur" Icon="Home" Background="#FF635490" Visibility="Collapsed"/>
+                <NavigationViewItem Content="Gestion chauffeurs" Tag="Gestion des chauffeurs" Name="homeGestionChauffeurs" Visibility="Collapsed" Icon="Folder" Background="#FF635490"/>
+                <NavigationViewItem Content="Gestion Clients" Tag="Gestion des clients" Name="homeGestionClients" Visibility="Collapsed" Icon="Folder" Background="#FF635490"/>
+
+                <NavigationViewItemSeparator x:Name="adminHr" Visibility="Collapsed"/>
+
+                <!-- Structure du chauffeur  -->
+                <NavigationViewItemHeader x:Name="chauffeurHeader" Content="Chauffeur" Visibility="Collapsed"/>
+                <NavigationViewItem Content="Acceuil" Tag="Accueil" Name="homeChauffeur" Visibility="Collapsed" Icon="Home" Background="#FF8B9054"/>
+                <NavigationViewItem Content="Trajets" Tag="Ajouter un Trajet" Name="ajouterChauffeurTrajet" Visibility="Collapsed" Icon="Add" Background="#FF8B9054"/>
+
+                <NavigationViewItemSeparator x:Name="chauffeurHr" Visibility="Collapsed" />
+                <!-- Strucuture du clients -->
+                <NavigationViewItemHeader x:Name="clientsHeader" Content="Clients" Visibility="Collapsed"/>
+                <NavigationViewItem Content="Acceuil" Visibility="Collapsed" Tag="Accueil" Name="homeClient" Icon="Target" Background="#FFB37893"/>
+                <NavigationViewItemSeparator Visibility="Collapsed"/>
+                <NavigationViewItem Name="compte"  Icon="Account" Content="Compte" Visibility="Collapsed" />
+                <NavigationViewItem Icon="LeaveChat"  Visibility="Collapsed" Content="Déconnexion" x:Name="deconexion"/>
+
+            </NavigationView.MenuItems>
+            <!-- Fin des items -->
+
+            <!-- Options non utilisées pour section more info -->
+            <NavigationView.PaneCustomContent>
+                <HyperlinkButton x:Name="PaneHyperlink" Content="More info" Margin="12,0" Visibility="Collapsed" />
+            </NavigationView.PaneCustomContent>
+
+            <!-- Code pour la barre de recherhe  -->
+
+
+            <!-- Début du footer  -->
+            <NavigationView.PaneFooter>
+                <StackPanel Orientation="Vertical" Visibility="Visible">
+                  
+                 
+
+                </StackPanel>
+            </NavigationView.PaneFooter>
+
+            <!-- Début du Frame    // outcoder la page de base pour l'invité lorsque l'application est ouverte pour la première fois -->
+            <Frame x:Name="mainFrame" Background="White" >
+
+                
+                <Grid>
+                    
+                    <GridView x:Name="Affichage">
+                        <GridView.ItemTemplate>
+
+                            <DataTemplate x:DataType="local:Trajets">
+
+
+                                <Border  Margin="15,15,0,15" Background="White">
+
+                                    <StackPanel Orientation="Horizontal"
+                                    Margin="5" HorizontalAlignment="Center" BorderBrush="#FF231A1A" FocusVisualPrimaryBrush="#FFA8BD23">
+
+                                        <StackPanel>
+                                            <Image Height="300" Width="250" Source="https://static.vecteezy.com/ti/vecteur-libre/p3/3108321-covoiturage-icon-personnes-partageant-une-voiture-vectoriel.jpg"/>
+                                            <TextBlock Text="{x:Bind NomChauffeur}" VerticalAlignment="Center"   HorizontalAlignment="Center" Foreground="Black"  FontSize="20"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Vertical" Margin="80,120,25,15">
+                                            <TextBlock Text="{x:Bind VilleDepart}"  Margin="0,0,0,8"  VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                            <TextBlock Text="{x:Bind HeureDepart}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"  FontSize="20"/>
+                                            
+                                            <StackPanel Orientation="Horizontal" >
+                                                <TextBlock Text="Places disponibles :   "  Foreground="Black"  Margin="0,10,0,0"  FontSize="20"> </TextBlock>
+                                                <TextBlock Text="{x:Bind NbPlace }" VerticalAlignment="Center"  Margin="0,10,0,0"  HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                            </StackPanel>
+                                            
+                                        </StackPanel>
+
+                                        <StackPanel  Margin="80,65,0,0">
+                                            <TextBlock Text="{x:Bind Date}" VerticalAlignment="Center"  Margin="0,0,0,45"  HorizontalAlignment="Center" FontSize="20" Foreground="Black" />
+                                            <Image Height="75" Width="100" Source="https://static.vecteezy.com/ti/vecteur-libre/p3/5393731-fleche-pointant-vers-la-droite-illustration-dans-le-style-doodle-image-noir-et-blanc-contour-dessin-manuel-dessin-isometrie-illustrationle-gratuit-vectoriel.jpg">
+                                            </Image>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Vertical" Margin="80,120,25,15">
+                                            <TextBlock Text="{x:Bind VilleArrive}" VerticalAlignment="Center"  Margin="0,0,0,8"  HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                            <TextBlock Text="{x:Bind HeureArrive}" VerticalAlignment="Center" Margin="0,0,0,8"  HorizontalAlignment="Center" Foreground="Black" FontSize="20" />
+                                            <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
+                                                <TextBlock Text="{x:Bind PrixPlace}" VerticalAlignment="Center"  Margin="0,0,0,8"  HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                                <TextBlock Text="$" Foreground="Black" FontSize="20"  Margin="0,0,0,8"></TextBlock>
+                                            </StackPanel>
+                                       </StackPanel>
+
+                                        <StackPanel Margin="80,145,0,0" Background="White">
+                                            <TextBlock Text="{x:Bind TypeVehicule}" VerticalAlignment="Center"  Margin="0,0,0,8"  HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                        
+                    </GridView>
+
+                </Grid>
+
+            </Frame>
+        </NavigationView>
+
+    </Grid>
+</Page>

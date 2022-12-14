@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="Essai2Projet.GestionChauffeur"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Essai2Projet"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <ScrollViewer>
+    <Grid Background="#FF9D7C7C">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" >
+            <TextBox Header="                                                              Veuillez entrer le nom du client" HorizontalAlignment="Center" x:Name="nomChauffeur" Width="700" Margin="0,20,0,0" ></TextBox>
+            <TextBlock Text="Entrer un nom" Foreground="#FFFD0000" HorizontalAlignment="Center" x:Name="erreurNom" Visibility="Collapsed" ></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0,80,0,0" VerticalAlignment="Top" >
+                <Button x:Name="rechercher" Content="Rechercher" Foreground="Black" FontSize="18"  Click="RechercherChauffeur_event" ></Button>
+            <Button x:Name="all" Content="all" Margin="24,24,0,24" Foreground="#FF181818" Click="All_event" FontSize="18" ></Button>
+            
+        </StackPanel>
+
+            <GridView x:Name="AfficheChauffeur" Margin="0,200,0,0"  >
+            <GridView.Background>
+                <ImageBrush ImageSource="https://media3.giphy.com/media/jsI62fVXkqQBIWGiQl/giphy.gif?cid=6c09b952e37aa04cc08300f41cef6a2e1f19f36a40fcc3a8&amp;rid=giphy.gif&amp;ct=s"/>
+            </GridView.Background>
+            <GridView.ItemTemplate>
+
+                <DataTemplate x:DataType="local:Utilisateur" >
+
+                    <StackPanel Orientation="Vertical"
+                                Margin="5,5,22,10" HorizontalAlignment="Stretch" >
+                        <StackPanel.Background>
+                            <ImageBrush/>
+                        </StackPanel.Background>
+
+                        <TextBlock Text="{x:Bind Nom}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35" FontFamily="Lucida Calligraphy" TextDecorations="Underline" />
+                        <TextBlock Text="{x:Bind Prenom}" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="20"/>
+                        <TextBlock Text="{x:Bind Adresse}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" />
+                        <TextBlock Text="{x:Bind Email}" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="20"/>
+                        <TextBlock Text="{x:Bind Numero}" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="20"/>
+
+
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+
+        </GridView>
+
+    </Grid>
+    </ScrollViewer>
+</Page>

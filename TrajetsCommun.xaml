@@ -1,0 +1,127 @@
+﻿<Page
+    x:Class="Essai2Projet.TrajetsCommun"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Essai2Projet"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="White">
+
+
+    <ScrollViewer>
+        <Grid HorizontalAlignment="Stretch" Background="#FFA59898">
+            <Grid x:Name="Section1"  HorizontalAlignment="Stretch" Margin="15,0,150,0"  Background="#FFA59898">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="8*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+
+
+                <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,25,0,0">
+                    <StackPanel>
+                        <CalendarDatePicker x:Name="date"  Header="                                 Entrer la date du trajet" Width = " 400 "    Margin = " 0,10 " HorizontalAlignment="Center" ></CalendarDatePicker>
+                        <TextBox x:Name="erreurNom" Text="Veuillez entrer un nom " Margin="0,0,0,0" MaxLength="32" Visibility="Collapsed" Width="400" HorizontalAlignment="Center" FontSize="11" Foreground="#FFD72F2F" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                            <Button Content="Rechercher" Margin="0,24" Click="RechercheTrajet_event" />
+                            <Button Content="all" Margin="24,24,0,24" Click="TousLesTrajets_event" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="1" HorizontalAlignment="Stretch" Grid.Column="0">
+                    <TextBlock Text="Les villes prises en compte par la société" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
+                    <Border Margin="20,40,20,104" Background="#FF403939">
+                        <ListView x:Name="villeComprise" Foreground="Black"/>
+                    </Border>
+                    <TextBox x:Name="nomVilleAjout" Width="125" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,72"></TextBox>
+                    <Button VerticalAlignment="Stretch" Content="Ajouter"  Click="AjouterVille_event" HorizontalAlignment="Right" Margin="0,450,25,66"/>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,25,0,0">
+                    <StackPanel>
+                        <CalendarDatePicker x:Name="dateDebut"  Header="        Entrer la date de début pour rechercher en une période" Width = " 400 "    Margin = " 0,10 " HorizontalAlignment="Center" ></CalendarDatePicker>
+                        <CalendarDatePicker x:Name="dateFin"  Header="            Entrer la date de fin  pour rechercher en une période" Width = " 400 "    Margin = " 0,10 " HorizontalAlignment="Center" ></CalendarDatePicker>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                            <Button Content="Rechercher" Margin="0,24" Click="Period_event" />
+                            <Button Content="all" Margin="24,24,0,24" Click="TousLesTrajets_event" />
+                            <Button Content="CSV" Margin="24,24,0,24" Click="Csv_event" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+
+            <Grid x:Name="Section2"   Margin="600,0,0,0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="https://e7.pngegg.com/pngimages/644/534/png-clipart-road-transport-logo-highway-road-maintenance-angle-transport.png"/>
+                </Grid.Background>
+
+                <Border Margin="10,35,10,55" Background="#FFFCFBFB">
+                     <ListView x:Name="Affiche" Foreground="#FF2F2C2C" RenderTransformOrigin="0.5,0.5" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="local:Trajets">
+
+                                <Grid Margin="0,12,0,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="AUto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0"  HorizontalAlignment="Center">
+                                        <TextBlock Text="{x:Bind VilleDepart}" VerticalAlignment="Center" Margin="0,0,25,0"  HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        <TextBlock Text="|" VerticalAlignment="Center" Margin="0,0,15,0"  HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                             <Image Height="75" Width="100" Source="https://static.vecteezy.com/ti/vecteur-libre/p3/5393731-fleche-pointant-vers-la-droite-illustration-dans-le-style-doodle-image-noir-et-blanc-contour-dessin-manuel-dessin-isometrie-illustrationle-gratuit-vectoriel.jpg"/>
+                                          <TextBlock Text="|" VerticalAlignment="Center" Margin="0,0,15,0"  HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+
+                                        <TextBlock Text="{x:Bind VilleArrive}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        <TextBlock Grid.Row="1" Text="{x:Bind Date}" VerticalAlignment="Center" Margin="45,0,0,0" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+
+
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,15">
+                                        <TextBlock Text="trajet:" VerticalAlignment="Center" Margin="0,0,15,0"  HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        <TextBlock  Text="{x:Bind PrixPlace}" VerticalAlignment="Center" Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        <TextBlock  Text="$" VerticalAlignment="Center" Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        
+                                        <TextBlock Text="Chauffeur:" VerticalAlignment="Center" Margin="35,0,15,0"  HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        <TextBlock  Text="{x:Bind Montant}" VerticalAlignment="Center" Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        <TextBlock  Text="$" VerticalAlignment="Center" Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+
+                                        <TextBlock Text="Spt:" VerticalAlignment="Center" Margin="55,0,15,0"  HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        <TextBlock  Text="{x:Bind MontantS}" VerticalAlignment="Center" Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        <TextBlock  Text="$" VerticalAlignment="Center" Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+
+                                        <TextBlock  Text="Total:" VerticalAlignment="Center" Margin="75,0,0,0" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        <TextBlock  Text="{x:Bind RevenuTotal}" VerticalAlignment="Center" Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+                                        <TextBlock  Text="$" VerticalAlignment="Center" Margin="0,0,0,0" HorizontalAlignment="Center" Foreground="Black" FontSize="20"/>
+
+
+                                    </StackPanel>
+
+                                   
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Border>
+            </Grid>
+
+
+        </Grid>
+    </ScrollViewer>
+
+</Page>

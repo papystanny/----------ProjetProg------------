@@ -1,0 +1,50 @@
+﻿<Page
+    x:Class="Essai2Projet.AjoutUser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Essai2Projet"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    >
+   
+
+    <ScrollViewer x:Name="cd">
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="https://e7.pngegg.com/pngimages/644/534/png-clipart-road-transport-logo-highway-road-maintenance-angle-transport.png"/>
+            </Grid.Background>
+            
+            <StackPanel Background="#FFA59898" Margin="250,100,250,100" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <TextBox x:Name="nom" Header= "Nom" Margin="0,24,0,0" MaxLength="32" Width="400" HorizontalAlignment="Center" />
+            <TextBlock x:Name="erreurNom" Text="Veuillez entrer un nom " Margin="0,0,0,0"  Visibility="Collapsed" Width="400" HorizontalAlignment="Center" FontSize="11" Foreground="#FFD72F2F" />
+            <TextBox x:Name="prenom" Header="Prenom" Margin="0,24,0,0" MaxLength="15" Width="400" HorizontalAlignment="Center"  />
+            <TextBlock x:Name="erreurPrenom" Text="Veuillez entrer un prenom " Margin="0,0,0,0"  Visibility="Collapsed" Width="400" HorizontalAlignment="Center" FontSize="11" Foreground="#FFD72F2F" />
+            <ComboBox x:Name="statut"  SelectedIndex="0"
+                      Header="Sélectionner votre statut" HorizontalAlignment="Center"    Width="400" Margin="0 15 0 0">
+                <x:String>Chauffeur</x:String>
+                <x:String>Client</x:String>
+
+            </ComboBox>
+            <TextBox x:Name="adresse" Header="Adresse" Margin="0,24,0,0" MaxLength="50" Width="400" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="erreurAdresse" Text="Veuillez entrer une adresse  " Margin="0,0,0,0"  Visibility="Collapsed" Width="400" HorizontalAlignment="Center" FontSize="11" Foreground="#FFD72F2F" />
+            <TextBox x:Name="numeroTelephone" Header="Numero de téléphone" Margin="0,24,0,0" MaxLength="50" Width="400" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="erreurNumeroTelephone" Text="Veuillez entrer un numero de téléphone " Margin="0,0,0,0"  Visibility="Collapsed" Width="400" HorizontalAlignment="Center" FontSize="11" Foreground="#FFD72F2F" />
+            <TextBox x:Name="email" Header="Email" Margin="0,24,0,0" MaxLength="50" Width="400" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="erreurEmail" Text="Veuillez entrer un email " Margin="0,0,0,0" Visibility="Collapsed" Width="400" HorizontalAlignment="Center" FontSize="11" Foreground="#FFD72F2F" />
+            <PasswordBox x:Name="motDePasse"  Header="Mot de passe" Margin="0,24,0,0" MaxLength="12" Width="400" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="erreurMotDePasse" Text="Veuillez entrer un mot de passe " Margin="0,0,0,0"  Visibility="Collapsed" Width="400" HorizontalAlignment="Center" FontSize="11" Foreground="#FFD72F2F" />
+
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button Content="Enregistrer" Margin="0,24" Click="SaveButton_Click" />
+              
+            </StackPanel>
+        </StackPanel>
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="180">
+                <TextBlock Text="Tous droirs réservés C" Foreground="#FF080808"></TextBlock>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="Essai2Projet.compte"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Essai2Projet"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+  
+        <Grid Background="Wheat" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel  Grid.Column="0">
+            <Image Height="445" Margin="25,235,25,0" Source="https://www.kindpng.com/picc/m/459-4595992_business-user-account-png-image-blue-link-icon.png"/>
+            <TextBlock Text="ewfdf"></TextBlock>
+            </StackPanel >
+
+          
+            <StackPanel Grid.Row="1"  Grid.Column="2">
+                <TextBlock x:Name="nom" Text="" Margin="0,45,0,0" FontSize="70" Foreground="#FF111010" HorizontalAlignment="Center" FontFamily="Monotype Corsiva" FontWeight="Bold" TextDecorations="Underline" VerticalAlignment="Stretch" FocusVisualPrimaryBrush="#FF090909" SelectionHighlightColor="Black" FocusVisualSecondaryBrush="#99000000"/>
+            </StackPanel>
+
+            <StackPanel  Grid.Row="2" Grid.Column="2">
+                <TextBlock x:Name="prenom" Text="Prenom : " Margin="20,45,0,0" FontSize="50" Foreground="#FF111010" HorizontalAlignment="Left"></TextBlock>
+            
+        </StackPanel>
+
+            <StackPanel  Grid.Row="3" Grid.Column="2">
+                <TextBlock x:Name="num" Text="No_Tel : " Margin="20,45,0,0" FontSize="50" Foreground="#FF111010" HorizontalAlignment="Left"></TextBlock>
+            </StackPanel>
+
+            <StackPanel  Grid.Row="4" Grid.Column="2">
+                <TextBlock x:Name="email" Text="Email : " Margin="20,45,0,0" FontSize="50" Foreground="#FF111010" HorizontalAlignment="Left"></TextBlock>
+            </StackPanel>
+
+            <StackPanel  Grid.Row="5" Grid.Column="2">
+                <TextBlock x:Name="adresse" Text="Adresse : " Margin="20,45,0,0" FontSize="50" Foreground="#FF111010" HorizontalAlignment="Left"></TextBlock>
+            </StackPanel>
+            
+
+
+
+
+
+        </Grid>
+
+</Page>
